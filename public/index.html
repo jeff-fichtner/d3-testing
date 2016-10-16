@@ -2,56 +2,81 @@
 <html>
 <head>
 
-	<title>D3 Mobile Testing</title>
-	<meta charset="utf-8">
-	<meta name = "viewport" content = "user-scalable=no, width=device-width,minimal-ui">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<link type="text/css" rel="stylesheet" href="css/interact_demo.css" />
+  <title>D3 Mobile Testing</title>
+  <meta charset="utf-8">
+  <meta name = "viewport" content = "user-scalable=no, width=device-width,minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link type="text/css" rel="stylesheet" href="css/interact_demo.css" />
 
   <style>
-    div#plain-text {
-    	font-size: 16px;
-    	font-family: sans-serif;
+    div {
+      font-family: sans-serif;
+    }
+    div#wordText {
+      font-size: 15px;
+    }
+    div#bodyText {
+      float: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   </style>
 
-	<script src="https://d3js.org/d3.v3.min.js"></script>
-	<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
-	<script src="js/interact.js"></script>
-	<script src="js/interact_demo.js"></script>
-<!-- 	<script src="js/matter.min.js" type="text/javascript"></script>
-	<script src="js/matter_chains.js" type="text/javascript"></script> -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+  <script src="js/interact.js"></script>
+  <script src="js/interact_demo.js"></script>
+
+<!--  <script src="js/matter.min.js" type="text/javascript"></script>
+  <script src="js/matter_chains.js" type="text/javascript"></script> -->
 
 </head>
 
 <body>
 
-	<div id="no-drop" class="draggable drag-drop"> hello world </div>
-	<div class="draggable drag-drop yes-drop"> trigger </div>
+<!--   <div id="no-drop" class="draggable drag-drop"> hello world </div>
+  <div class="draggable drag-drop yes-drop"> trigger </div>
+ -->
 
-	<div id="outer-dropzone" class="dropzone">#outer-dropzone
-		<div id="inner-dropzone" class="dropzone">#inner-dropzone</div>
-	</div>
 
-	<!-- SVG div -->
-	<div id="plain-text" class="draggable drag-drop yes-drop"></div>
+  <div id="sentence-text" id="outer-dropzone" class="dropzone">
+    <div id="inner-dropzone" class="dropzone"></div>
+  </div>
+
+  <!-- SVG div -->
+  <div id="word-text" class="draggable drag-drop yes-drop"></div>
 
   <script>
 
-    var textData = ["SVG line of text"];
+      // data for sentence
+    var sentenceData = ["Bacon ipsum dolor amet capicola boudin burgdoggen ham hock."];
 
-    var width = 300, height = 100;
+    var width = 100, height = 300;
 
-    var plainText = d3.select("#plain-text")
-    	.append("plainText")
+    var sentenceText = d3.select("#sentence-text")
+      .append("sentenceText")
       .attr("width", width)
       .attr("height", height);
 
-    plainText.append('text')
-      .append("plainText")
-      .text(textData);
+    sentenceText.append('text')
+      .append("sentenceText")
+      .text(sentenceData);
 
-	</script>
+    // data for word
+    var wordData = ["SVG word"];
+
+    var width = 100, height = 10;
+
+    var wordText = d3.select("#word-text")
+      .append("wordText")
+      .attr("width", width)
+      .attr("height", height);
+
+    wordText.append('text')
+      .append("wordText")
+      .text(wordData);
+
+  </script>
 
 </body>
 </html>
