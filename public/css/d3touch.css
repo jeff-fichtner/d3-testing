@@ -1,9 +1,9 @@
 #outer-dropzone {
-  height: 140px;
+  height: 100px;
 }
 
 #inner-dropzone {
-  height: 80px;
+  height: 30px;
 }
 
 .dropzone {
