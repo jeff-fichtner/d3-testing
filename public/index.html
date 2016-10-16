@@ -19,49 +19,23 @@
 
         <!-- matterjs dev version -->
         <script type="text/javascript" src="../build/matter-dev.js"></script>
-
         <!-- only required if using MatterTools -->
-        <link rel="stylesheet" href="./js/lib/matter-tools/matter-tools.css" type="text/css">
-        <script type="text/javascript" src="./js/lib/matter-tools/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="./js/lib/matter-tools/gif/gif.js"></script>
-        <script type="text/javascript" src="./js/lib/matter-tools/matter-tools-dev.js"></script>
+        <link rel="stylesheet" href="js/lib/matter-tools/matter-tools.css" type="text/css">
+        <script type="text/javascript" src=" js/lib/matter-tools/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src=" js/lib/matter-tools/gif/gif.js"></script>
+        <script type="text/javascript" src=" js/lib/matter-tools/matter-tools-dev.js"></script>
 
         <!-- matter demo code -->
-        <link rel="stylesheet" href="./css/style.css" type="text/css">
-        <script type="text/javascript" src="./js/Examples.js"></script>
-        <script type="text/javascript" src="./js/Demo.js"></script>
+        <link rel="stylesheet" href="css/interact.css" type="text/css">
+        <script type="text/javascript" src="js/matter.min.js"></script>
+        <script type="text/javascript" src="js/matter_chains.js"></script>
 
 
 </head>
 
-<body onload='Start()'>
+<body>
 
-	<div id="no-drop" class="draggable drag-drop"> hello world </div>
-	<div class="draggable drag-drop yes-drop"> trigger </div>
-
-	<div id="outer-dropzone" class="dropzone">#outer-dropzone
-		<div id="inner-dropzone" class="dropzone">#inner-dropzone</div>
-	</div>
-
-	<!-- SVG div -->
-	<div id="plain-text" class="draggable drag-drop yes-drop"></div>
-
-  <script>
-
-    var textData = ["SVG line of text"];
-
-    var width = 300, height = 100;
-
-    var plainText = d3.select("#plain-text")
-    	.append("plainText")
-      .attr("width", width)
-      .attr("height", height);
-
-    plainText.append('text')
-      .append("plainText")
-      .text(textData);
-
-	</script>
-
+<canvas id="game" ></canvas>
 </body>
 </html>
+
