@@ -1,9 +1,9 @@
 #outer-dropzone {
-  height: 140px;
+  height: 100px;
 }
 
 #inner-dropzone {
-  height: 80px;
+  height: 30px;
 }
 
 .dropzone {
@@ -30,6 +30,7 @@
   display: inline-block;
   min-width: 40px;
   /*padding: 2em 0.5em;*/
+  font-size: 200%;
 
   color: black;
   /*background-color: #29e;*/
