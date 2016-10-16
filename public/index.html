@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>D3 Mobile Testing</title>
-	<meta charset="utf-8">
-	<link type="text/css" rel="stylesheet" href="css/d3touch.css" />
-	<script src="http://d3js.org/d3.v3.min.js"></script>
-	<script src="http://d3js.org/colorbrewer.v1.min.js"></script>
-	<script src="js/d3touch.js"></script>
+ <title>D3 Mobile Testing</title>
+ <meta charset="utf-8">
+ <link type="text/css" rel="stylesheet" href="css/d3touch.css" />
 </head>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+<script src="js/interact.js"></script>
+<script src="js/d3touch.js"></script>
 <body>
-	<div id="vizcontainer">
-		<svg></svg>
-	</div>
+<div id="no-drop" class="draggable drag-drop"> hello world </div>
+
+<div id="yes-drop" class="draggable drag-drop"> trigger </div>
+
+<div id="outer-dropzone" class="dropzone">
+  #outer-dropzone
+<div id="inner-dropzone" class="dropzone">#inner-dropzone</div>
+</div>
 </body>
 </html>
