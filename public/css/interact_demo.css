@@ -1,23 +1,47 @@
 #outer-dropzone {
   height: 100px;
+  width: 800px;
 }
 
 #inner-dropzone {
-  height: 30px;
+  width: 5%;
 }
 
+.block {
+  display: block;
+  position: absolute;
+}
+.inline {
+  display: inline-block;
+  position: relative;
+}
+
+.float-left {
+  float: left;
+  padding: 2%;
+}
+
+.float-right {
+  float: right;
+  padding: 2%;
+}
 .dropzone {
+/*  display: inline-block;
+  position: relative;*/
   background-color: #ccc;
   border: dashed 4px transparent;
   border-radius: 4px;
   margin: 10px auto 30px;
   padding: 10px;
   width: 80%;
+  color: white;
+  /*height: 15px;*/
   transition: background-color 0.3s;
 }
 
 .drop-active {
   border-color: #aaa;
+
 }
 
 .drop-target {
@@ -28,11 +52,13 @@
 
 .drag-drop {
   display: inline-block;
+  position: relative;
   min-width: 40px;
   /*padding: 2em 0.5em;*/
   font-size: 200%;
+  color: blue;
 
-  color: black;
+  /*color: white;*/
   /*background-color: #29e;*/
   /*border: solid 2px #fff;*/
 
@@ -46,3 +72,4 @@
   /*color: #000;*/
   /*background-color: #4e4;*/
 }
+

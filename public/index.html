@@ -12,14 +12,7 @@
     div {
       font-family: sans-serif;
     }
-    div#wordText {
-      font-size: 15px;
-    }
-    div#bodyText {
-      float: right;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+
   </style>
 
   <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -38,39 +31,68 @@
   <div class="draggable drag-drop yes-drop"> trigger </div>
  -->
 
+  <div id="outer-dropzone" class="dropzone">
 
-  <div id="sentence-text" id="outer-dropzone" class="dropzone">
-    <div id="inner-dropzone" class="dropzone"></div>
+    <span id="sentence1" class="float-left" ></span>
+     <div id="inner-dropzone" class="dropzone inline"></div>
+    <span id="sentence2" class="float-right"></span>
+
   </div>
+
 
   <!-- SVG div -->
   <div id="word-text" class="draggable drag-drop yes-drop"></div>
 
   <script>
 
-      // data for sentence
-    var sentenceData = ["Bacon ipsum dolor amet capicola boudin burgdoggen ham hock."];
+    var fontSize = '15px';
+
+    // data for sentence
+    var sentenceData = "Bacon ipsum dolor amet capi boudin burgdoggen ham hock.";
+
+    var length = (sentenceData.length / 2);
+    var sentenceData2 = sentenceData.slice(length);
+    var sentenceData1 = sentenceData.slice(0, length);
 
     var width = 100, height = 300;
 
-    var sentenceText = d3.select("#sentence-text")
+    // first half Sentence
+    var sentenceText = d3.select("#sentence1")
       .append("sentenceText")
+      .style('font-size', fontSize)
       .attr("width", width)
       .attr("height", height);
 
     sentenceText.append('text')
       .append("sentenceText")
-      .text(sentenceData);
+      .text(sentenceData1);
+
+    // var sentenceText = d3.select("#sentence1")
+    //   .data([sentenceData1])
+    //   .enter().append("sentenceText")
+    //     .text(function(d) { return d;});
+
+    // second half
+    var sentenceText2 = d3.select("#sentence2")
+      .append("sentenceText")
+      .style('font-size', fontSize)
+      .attr("width", width)
+      .attr("height", height);
+
+    sentenceText2.append('text')
+      .append("sentenceText")
+      .text(sentenceData2);
 
     // data for word
-    var wordData = ["SVG word"];
+    var wordData = ["SVG"];
 
-    var width = 100, height = 10;
+    // var wordWidth = 30, wordHeight = 50;
 
     var wordText = d3.select("#word-text")
       .append("wordText")
-      .attr("width", width)
-      .attr("height", height);
+      .style('font-size', fontSize);
+      // .attr("width", wordWidth)
+      // .attr("height", wordHeight);
 
     wordText.append('text')
       .append("wordText")
