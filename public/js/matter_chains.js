@@ -45,18 +45,81 @@
 
 // };
 
-function Start() {
-    // create a Matter.js engine
-    var engine = Engine.create(document.getElementById('canvas-container'));
+// // Matter.js module aliases
+// var Engine = Matter.Engine,
+//     World = Matter.World,
+//     Bodies = Matter.Bodies;
 
-    // create two boxes and a ground
-    var boxA = Bodies.rectangle(400, 200, 80, 80);
-    var boxB = Bodies.rectangle(450, 50, 80, 80);
-    var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
 
-    // add all of the bodies to the world
-    World.add(engine.world, [boxA, boxB, ground]);
+// function Start() {
+//     // create a Matter.js engine
+//     var engine = Engine.create(document.getElementById('canvas-container'));
 
-    // run the engine
-    Engine.run(engine);
-}
+//     // create two boxes and a ground
+//     var boxA = Bodies.rectangle(400, 200, 80, 80);
+//     var boxB = Bodies.rectangle(450, 50, 80, 80);
+//     var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+
+//     // add all of the bodies to the world
+//     World.add(engine.world, [boxA, boxB, ground]);
+
+//     // run the engine
+//     Engine.run(engine);
+// }
+
+// module aliases
+var Engine = Matter.Engine,
+    Render = Matter.Render,
+    World = Matter.World,
+    Bodies = Matter.Bodies;
+    Body = Matter.Body;
+    Composite = Matter.Composite;
+    Composites = Matter.Composites;
+    Constraint = Matter.Constraint;
+    Mouse = Matter.MouseConstraint;
+
+// create an engine
+var engine = Engine.create();
+var mouse = Mouse.create();
+
+// create a renderer
+var render = Render.create({
+    element: document.body,
+    engine: engine,
+    mouse: mouse,
+    options: {
+    }
+});
+
+// create two boxes and a ground
+var boxA = Bodies.rectangle(400, 200, 80, 80);
+var boxB = Bodies.rectangle(450, 50, 80, 80);
+var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+
+var group = Body.nextGroup(true);
+
+var ropeB = Composites.stack(500, 100, 5, 2, 10, 10, function(x, y) {
+            return Bodies.circle(x, y, 20, { collisionFilter: { group: group } });
+        });
+
+        Composites.chain(ropeB, 0.5, 0, -0.5, 0, { stiffness: 0.8, length: 2 });
+        Composite.add(ropeB, Constraint.create({
+            bodyB: ropeB.bodies[0],
+            pointB: { x: -20, y: 0 },
+            pointA: { x: 500, y: 100 },
+            stiffness: 0.5
+        }));
+
+        World.add(engine.world, ropeB);
+
+// add all of the bodies to the world
+World.add(engine.world, [boxA, boxB, ground]);
+
+// run the engine
+(function run() {
+    window.requestAnimationFrame(run);
+    Engine.update(engine, 1000 / 30);
+})();
+
+// run the renderer
+Render.run(render);
