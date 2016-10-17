@@ -68,6 +68,7 @@ interact('.dropzone').dropzone({
     dropzoneElement.classList.add('drop-target');
     draggableElement.classList.add('can-drop');
     draggableElement.textContent = 'Dragged in';
+    sendDataToSwift("hello");
   },
   ondragleave: function (event) {
     // remove the drop feedback style
