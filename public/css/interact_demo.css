@@ -4,7 +4,7 @@
 }
 
 #inner-dropzone {
-  width: 5%;
+  width: 0%;
 }
 
 .block {
@@ -47,6 +47,7 @@
 }
 
 .drag-drop {
+
   display: inline-block;
   position: relative;
   min-width: 40px;

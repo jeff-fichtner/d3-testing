@@ -42,10 +42,15 @@
 
   <!-- SVG div -->
   <div id="word-text" class="draggable drag-drop yes-drop"></div>
+  <div id="word-text2" class="draggable drag-drop"></div>
+  <div id="word-text3" class="draggable drag-drop"></div>
+  <div id="word-text4" class="draggable drag-drop"></div>
+  <div id="word-text5" class="draggable drag-drop"></div>
+  <div id="word-text6" class="draggable drag-drop"></div>
 
   <script>
 
-    var fontSize = '15px';
+    var fontSize = '20px';
 
     // data for sentence
     var sentenceData = "Bacon ipsum dolor amet capi boudin burgdoggen ham hock.";
@@ -67,10 +72,6 @@
       .append("sentenceText")
       .text(sentenceData1);
 
-    // var sentenceText = d3.select("#sentence1")
-    //   .data([sentenceData1])
-    //   .enter().append("sentenceText")
-    //     .text(function(d) { return d;});
 
     // second half
     var sentenceText2 = d3.select("#sentence2")
@@ -85,6 +86,11 @@
 
     // data for word
     var wordData = "cola";
+    var wordData2 = "chamois";
+    var wordData3 = 'cups';
+    var wordData4 = 'clouds';
+    var wordData5 = 'clapping';
+    var wordData6 = 'caitlin';
 
     // var wordWidth = 30, wordHeight = 50;
 
@@ -97,6 +103,52 @@
     wordText.append('text')
       .append("wordText")
       .text(wordData);
+
+    var wordText2 = d3.select("#word-text2")
+      .append("wordText2")
+      .style('font-size', fontSize);
+
+    wordText2.append('text')
+      .append("wordText2")
+      .text(wordData2);
+
+    var wordText3 = d3.select("#word-text3")
+      .append("wordText3")
+      .style('font-size', fontSize);
+
+    wordText3.append('text')
+      .append("wordText3")
+      .text(wordData3);
+
+    var wordText4 = d3.select("#word-text4")
+      .append("wordText4")
+      .style('font-size', fontSize);
+
+    wordText4.append('text')
+      .append("wordText4")
+      .text(wordData4);
+
+    var wordText5 = d3.select("#word-text5")
+      .append("wordText5")
+      .style('font-size', fontSize);
+
+    wordText5.append('text')
+      .append("wordText5")
+      .text(wordData5);
+
+    var wordText6 = d3.select("#word-text6")
+      .append("wordText6")
+      .style('font-size', fontSize);
+
+    wordText6.append('text')
+      .append("wordText6")
+      .text(wordData6);
+
+    // utilize for iteration
+    // var sentenceText = d3.select("#sentence1")
+    //   .data([sentenceData1])
+    //   .enter().append("sentenceText")
+    //     .text(function(d) { return d;});
 
   </script>
 
