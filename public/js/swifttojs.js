@@ -57,7 +57,7 @@
   }
 
     function callSwiftHandler(handlerName, data, responseCallback) {
-        var message = handlerName ? { handlerName:handlerName, data:data } : { data:data}
+        var message = handlerName ? { handlerName:handlerName, data:data } : { data:data }
         if (responseCallback) {
             var callbackId = 'cb_'+(uniqueId++)+'_JS_'+new Date().getTime()
             responseCallbacks[callbackId] = responseCallback
