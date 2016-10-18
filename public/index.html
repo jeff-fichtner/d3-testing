@@ -22,6 +22,9 @@
 </head>
 <body>
 
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"></svg>
+
   <div id="outer-dropzone" class="dropzone">
 
     <span id="sentenceBegin" class="float-left" ></span>
@@ -34,6 +37,9 @@
   <div id="word-text" class="draggable drag-drop yes-drop"></div>
 
   <script>
+
+    var fontSize = '20px';
+    var width = 800, height = 300;
 
     // data for sentence
     var sentenceData = faker.lorem.sentence();
@@ -48,26 +54,29 @@
 
     var sentenceDataBegin = splitSentenceData.slice(0, half).join(" ");
     var sentenceDataEnd = splitSentenceData.slice(half, length).join(" ");
-    var fontSize = '20px';
-    var width = 100, height = 300;
 
-    // BEGIN Sentence
-    var sentenceTextBegin = d3.select("#sentenceBegin")
-      .style('font-size', fontSize)
+    // create SVG
+    var svg = d3.select("body").select("#sentenceBegin")
+      .append("svg")
       .attr("width", width)
       .attr("height", height);
 
-    sentenceTextBegin.append('text')
-      .text(sentenceDataBegin);
+    // create SVG path
+    svg.append("path")
+      .attr("id", "wave")
+      .attr("d", 'M 10,90 Q 100,15 200,70 Q 340,140 480,70')
+      .style("fill", "none")
+      .style("stroke", "#1A818C");
 
-    // END Sentence
-    var sentenceTextEnd = d3.select("#sentenceEnd")
-      .style('font-size', fontSize)
-      .attr("width", width)
-      .attr("height", height);
+    // create SVG text element and append "textPath" element
+    svg.append("text")
+      .append("textPath")
+      .attr("xlink:href", "#wave")
+      .style("text-anchor", "middle")
+      .attr("startOffset", "50%")
+      .text(sentenceData)
 
-    sentenceTextEnd.append('text')
-      .text(sentenceDataEnd);
+    // *** WORDS generator ***
 
     // data for words
     var wordData = [];
@@ -75,12 +84,12 @@
       wordData.push(faker.lorem.word());
     }
 
-    var wordText = d3.select("div")
+    var wordText = d3.select("body").selectAll("div")
       .data(wordData)
       .enter().append("div")
         .text(function(d) { return d; } )
         .style('font-size', fontSize)
-        .attr('class', function(d) { return 'draggable drag-drop'; } );
+        .attr('class', function(d) { return 'float-left draggable drag-drop'; } );
 
     // data for selected word, "wordSplice"
     var wordText = d3.select("#word-text")
