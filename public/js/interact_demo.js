@@ -73,6 +73,7 @@ function renderInteract() {
       console.log('drag leave');
     },
     ondrop: function (event) {
+      console.log('drop');
       if (currentSentenceIndex === sentences.length - 1) {
         console.log("The game is finished, I've just made a call to swift");
         // JS TO SWIFT
@@ -85,7 +86,7 @@ function renderInteract() {
       // remove active dropzone feedback
       event.target.classList.remove('drop-active');
       event.target.classList.remove('drop-target');
-      console.log('drop activate');
+      console.log('drop deactivate');
     }
   });
 }
