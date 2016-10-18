@@ -73,8 +73,15 @@
       .append("textPath")
       .attr("xlink:href", "#wave")
       .style("text-anchor", "middle")
-      .attr("startOffset", "50%")
-      .text(sentenceData)
+      .attr("startOffset", "25%")
+      .text(sentenceDataBegin);
+
+    svg.append("text")
+      .append("textPath")
+      .attr("xlink:href", "#wave")
+      .style("text-anchor", "middle")
+      .attr("startOffset", "75%")
+      .text(sentenceDataEnd);
 
     // *** WORDS generator ***
 
