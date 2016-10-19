@@ -10,7 +10,7 @@
   <!-- css.bs -->
   <link type="text/css" rel="stylesheet" href="css/interact_demo.css" />
   <!-- d3.js -->
-  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
   <!-- faker.js -->
   <script src = "js/faker.min.js" type = "text/javascript"></script>
@@ -27,9 +27,10 @@
 
   <div id="outer-dropzone" class="dropzone">
 
-    <span id="sentenceBegin" class="float-left" ></span>
+    <span id="sentence" class="float-left" ></span>
+    <!-- <span id="sentenceBegin" class="float-left" ></span> -->
      <div id="inner-dropzone" class="dropzone"></div>
-    <span id="sentenceEnd" class="float-left"></span>
+    <!-- <span id="sentenceEnd" class="float-left"></span> -->
 
   </div>
 
@@ -42,7 +43,8 @@
     var width = 600, height = 300;
 
     // data for sentence
-    var sentenceData = faker.lorem.sentence();
+    // var sentenceData = faker.lorem.sentence();
+    var sentenceData = "long and roving sentence that will go on forever and ever and a day";
 
     var splitSentenceData = sentenceData.split(" ");
     var length = splitSentenceData.length;
@@ -56,7 +58,7 @@
     var sentenceDataEnd = splitSentenceData.slice(half, length).join(" ");
 
     // create SVG
-    var svg = d3.select("body").select("#sentenceBegin")
+    var svg = d3.select("body").select("#sentence")
       .append("svg")
       .attr("width", width)
       .attr("height", height);
