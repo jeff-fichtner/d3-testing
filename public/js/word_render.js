@@ -23,7 +23,9 @@ function wordRender(sentenceData) {
   // create SVG path
   svg.append("path")
     .attr("id", "wave")
-    .attr("d", 'M 40,90 Q 160,15 240,70 Q 380,140 520,70')
+    // .attr("d", 'M 40,120 Q 160,15 240,70 Q 500,140 520,70')
+    .attr("d", 'M 0,120 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100  c 50,0 0,100 100,53 c 60,0 0,100 60,53')
+    // .attr('d', 'M 40,120 c 75,0 0,100 75,67 c 100,0 0,-100 100,-70 c 100,0 0,100 100,55 c 100,0 0,-100 100,-100 c 100,0 0,-100 100,-100')
     .style("fill", "none")
     .style("stroke", "#1A818C");
 
@@ -68,7 +70,7 @@ function wordRender(sentenceData) {
         .append("textPath")
         .attr("xlink:href", "#wave")
         .style("text-anchor", "middle")
-        .attr("startOffset", "75%")
+        .attr("startOffset", "25%")
       .merge(textStartPathUpdate)
         .text(function(sentenceText) {
           return sentenceText
@@ -85,7 +87,7 @@ function wordRender(sentenceData) {
         .append("textPath")
         .attr("xlink:href", "#wave")
         .style("text-anchor", "middle")
-        .attr("startOffset", "25%")
+        .attr("startOffset", "75%")
       .merge(textStartPathUpdate)
         .text(function(sentenceText) {
           return sentenceText
