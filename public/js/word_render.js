@@ -24,7 +24,7 @@ function wordRender(sentenceData) {
   svg.append("path")
     .attr("id", "wave")
     // .attr("d", 'M 40,120 Q 160,15 240,70 Q 500,140 520,70')
-    .attr("d", 'M 0,120 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100  c 50,0 0,100 100,53 c 60,0 0,100 60,53')
+    .attr("d", 'M 0,120 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100  c 50,0 0,100 100,53 c 60,0 0,100 80,70')
     // .attr('d', 'M 40,120 c 75,0 0,100 75,67 c 100,0 0,-100 100,-70 c 100,0 0,100 100,55 c 100,0 0,-100 100,-100 c 100,0 0,-100 100,-100')
     .style("fill", "none")
     .style("stroke", "#1A818C");
@@ -37,17 +37,45 @@ function wordRender(sentenceData) {
   // *** WORDS generator ***
 
   // data for words
-  var wordData = [];
-  for (var i = 0; i < 8; i++) {
-    wordData.push(faker.lorem.word());
+// var wordData = ["odd", "zoo", "alive", "curl", "felt",  "gain",  "dawn",  "dear"]
+
+ wordData = ["odd", "zoo", "alive", "curl", "felt",  "gain",  "dawn",  "dear",
+"gold", "path", "safe", "roof", "aunt",  "self",  "tuna",  "few", "zero", "world", "wait", "uncle", "visit", "cheer", "jaw", "paper", "sharp", "sink", "twice", "middle", "paste", "animal", "chicken", "banana","earth", "fever", "follow", "crow", "giant", "degree",  "useful",  "zebra", "cottage", "couch", "evening", "crumb",
+"decide", "camera",  "garden",  "false", "gasoline", "fruit", "beautiful", "copying", "cancel",  "newscast",  "fleece",  "select", "slumber", "usual", "remind", "pour","graceful", "pioneer", "alert", "chimney", "continue",  "urge",  "striving",  "stretch","noise", "terrible", "voyage", "surprise","twenty", "amount", "avenue", "beggar", "forecast", "vacation", "libraries", "sneezing", "machine", "neighbor", "weekend", "laughter","shoulder", "quarter", "equal", "wheelchair",
+"actively", "discover", "vulture", "mountain", "scariest", "impossible", "government", "consistent", "recommend", "whistling", "doubtful",  "guitar"];
+  // var randoWords = []
+  //   for (var i = 0; i < 8; i++) {
+  //    randoWords.push(wordData.splice(0, 4))
+  //   } return randoWords
+
+ // randoWordsArray = []
+ //  for (var i=0; i < randoWords.length; i++) {
+ //    randoWordsArray.push(randoWords[i])
+ //  }
+ //  return randoWordsArray
+
+ function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
   }
 
+   randoWords = getRandomSubarray(wordData, 10)
+
   var wordText = d3.select("body").selectAll("div")
-    .data(wordData)
+    .data(randoWords)
     .enter().append("div")
       .text(function(d) { return d; } )
       .style('font-size', fontSize)
-      .attr('class', function(d) { return 'float-left draggable drag-drop'; } );
+      .attr('class', function() { return 'float-left draggable drag-drop'; } )
+      .attr('data-y', function() { return '-50' } );
+      // .attr('data-x', function() { return Math.random() * 500; })
+      // .attr('data-y', function() { return Math.random() * 200; });
 
   // data for selected word, "wordSplice"
   var wordText = d3.select("#word-text")
@@ -70,7 +98,7 @@ function wordRender(sentenceData) {
         .append("textPath")
         .attr("xlink:href", "#wave")
         .style("text-anchor", "middle")
-        .attr("startOffset", "25%")
+        .attr("startOffset", "18%")
       .merge(textStartPathUpdate)
         .text(function(sentenceText) {
           return sentenceText
