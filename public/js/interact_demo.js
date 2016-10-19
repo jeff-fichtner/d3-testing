@@ -75,8 +75,7 @@ function renderInteract() {
     ondrop: function (event) {
       console.log('drop');
       if (currentSentenceIndex === sentences.length - 1) {
-        console.log("The game is finished, I've just made a call to swift");
-        window.location = "https://www.google.com/";
+        window.location = "https://www.wtf.com/wtf/wtaf";
       } else {
         currentSentenceIndex += 1;
         run(sentences[currentSentenceIndex]);

@@ -1,10 +1,11 @@
 #outer-dropzone {
-  height: 100px;
-  width: 800px;
+  height: 300px;
+  width: 600px;
 }
 
 #inner-dropzone {
   width: 0%;
+  margin-top: 15%;
 }
 
 .block {
@@ -53,7 +54,7 @@
   min-width: 40px;
   /*padding: 2em 0.5em;*/
   font-size: 200%;
-  color: blue;
+  color: #1A818C;
 
   /*color: white;*/
   /*background-color: #29e;*/
@@ -73,4 +74,3 @@
 div {
   font-family: sans-serif;
 }
-
