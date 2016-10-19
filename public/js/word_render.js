@@ -37,22 +37,11 @@ function wordRender(sentenceData) {
   // *** WORDS generator ***
 
   // data for words
-// var wordData = ["odd", "zoo", "alive", "curl", "felt",  "gain",  "dawn",  "dear"]
 
  wordData = ["odd", "zoo", "alive", "curl", "felt",  "gain",  "dawn",  "dear",
 "gold", "path", "safe", "roof", "aunt",  "self",  "tuna",  "few", "zero", "world", "wait", "uncle", "visit", "cheer", "jaw", "paper", "sharp", "sink", "twice", "middle", "paste", "animal", "chicken", "banana","earth", "fever", "follow", "crow", "giant", "degree",  "useful",  "zebra", "cottage", "couch", "evening", "crumb",
 "decide", "camera",  "garden",  "false", "gasoline", "fruit", "beautiful", "copying", "cancel",  "newscast",  "fleece",  "select", "slumber", "usual", "remind", "pour","graceful", "pioneer", "alert", "chimney", "continue",  "urge",  "striving",  "stretch","noise", "terrible", "voyage", "surprise","twenty", "amount", "avenue", "beggar", "forecast", "vacation", "libraries", "sneezing", "machine", "neighbor", "weekend", "laughter","shoulder", "quarter", "equal", "wheelchair",
 "actively", "discover", "vulture", "mountain", "scariest", "impossible", "government", "consistent", "recommend", "whistling", "doubtful",  "guitar"];
-  // var randoWords = []
-  //   for (var i = 0; i < 8; i++) {
-  //    randoWords.push(wordData.splice(0, 4))
-  //   } return randoWords
-
- // randoWordsArray = []
- //  for (var i=0; i < randoWords.length; i++) {
- //    randoWordsArray.push(randoWords[i])
- //  }
- //  return randoWordsArray
 
  function getRandomSubarray(arr, size) {
     var shuffled = arr.slice(0), i = arr.length, temp, index;
@@ -65,7 +54,7 @@ function wordRender(sentenceData) {
     return shuffled.slice(0, size);
   }
 
-   randoWords = getRandomSubarray(wordData, 10)
+  var randoWords = getRandomSubarray(wordData, 10)
 
   var wordText = d3.select("body").selectAll("div")
     .data(randoWords)
