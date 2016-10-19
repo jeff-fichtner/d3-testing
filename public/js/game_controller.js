@@ -5,7 +5,6 @@ function callAndInit() {
 	  url: "https://unravl.herokuapp.com/demo",
 	  method: 'GET',
 	}).done(function(response) {
-	  console.log(response);
 	  sentences = [];
 	  for (var i in response) {
 	  	sentences.push(response[i].text);
