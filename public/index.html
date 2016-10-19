@@ -1,22 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>D3 Mobile Testing</title>
- <meta charset="utf-8">
- <link type="text/css" rel="stylesheet" href="css/d3touch.css" />
+
+  <title>D3 Mobile Testing</title>
+  <meta charset="utf-8">
+  <meta name = "viewport" content = "user-scalable=no, width=device-width,minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <!-- css.bs -->
+  <link type="text/css" rel="stylesheet" href="css/interact_demo.css" />
+  <!-- d3.js -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+  <!-- faker.js -->
+  <script src = "js/faker.min.js" type = "text/javascript"></script>
+  <!-- interact.js -->
+  <script src="js/interact.js"></script>
+  <!-- our interact js -->
+  <script src="js/interact_demo.js"></script>
+
 </head>
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
-<script src="js/interact.js"></script>
-<script src="js/d3touch.js"></script>
 <body>
-<div id="no-drop" class="draggable drag-drop"> hello world </div>
 
-<div id="yes-drop" class="draggable drag-drop"> trigger </div>
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"></svg>
 
-<div id="outer-dropzone" class="dropzone">
-  #outer-dropzone
-<div id="inner-dropzone" class="dropzone">#inner-dropzone</div>
-</div>
+  <div id="outer-dropzone" class="dropzone">
+
+    <span id="sentenceBegin" class="float-left" ></span>
+     <div id="inner-dropzone" class="dropzone"></div>
+    <span id="sentenceEnd" class="float-left"></span>
+
+  </div>
+
+  <!-- div for selected word "wordSplice" -->
+  <div id="word-text" class="draggable drag-drop yes-drop"></div>
+
+  <script>
+
+    var fontSize = '20px';
+    var width = 600, height = 300;
+
+    // data for sentence
+    var sentenceData = faker.lorem.sentence();
+
+    var splitSentenceData = sentenceData.split(" ");
+    var length = splitSentenceData.length;
+    // return random number between 1 and last index(length-1)?
+    var half = length / 2;
+
+    // array.splice(start, [deleteCount = 1]) => return word fragment DESTRUCTIVE
+    var wordSplice = splitSentenceData.splice(half, 1);
+
+    var sentenceDataBegin = splitSentenceData.slice(0, half).join(" ");
+    var sentenceDataEnd = splitSentenceData.slice(half, length).join(" ");
+
+    // create SVG
+    var svg = d3.select("body").select("#sentenceBegin")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    // create SVG path
+    svg.append("path")
+      .attr("id", "wave")
+      .attr("d", 'M 40,90 Q 160,15 240,70 Q 380,140 520,70')
+      .style("fill", "none")
+      .style("stroke", "#1A818C");
+
+    // create SVG text element and append "textPath" element
+    svg.append("text")
+      .append("textPath")
+      .attr("xlink:href", "#wave")
+      .style("text-anchor", "middle")
+      .attr("startOffset", "25%")
+      .text(sentenceDataBegin);
+
+    svg.append("text")
+      .append("textPath")
+      .attr("xlink:href", "#wave")
+      .style("text-anchor", "middle")
+      .attr("startOffset", "75%")
+      .text(sentenceDataEnd);
+
+    // *** WORDS generator ***
+
+    // data for words
+    var wordData = [];
+    for (var i = 0; i < 8; i++) {
+      wordData.push(faker.lorem.word());
+    }
+
+    var wordText = d3.select("body").selectAll("div")
+      .data(wordData)
+      .enter().append("div")
+        .text(function(d) { return d; } )
+        .style('font-size', fontSize)
+        .attr('class', function(d) { return 'float-left draggable drag-drop'; } );
+
+    // data for selected word, "wordSplice"
+    var wordText = d3.select("#word-text")
+      .append("wordText")
+      .style('font-size', fontSize);
+
+    wordText.append('text')
+      .append("wordText")
+      .text(wordSplice);
+
+  </script>
+
 </body>
 </html>
