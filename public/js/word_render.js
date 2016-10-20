@@ -2,7 +2,7 @@
 function wordRender(sentenceData) {
 
   var fontSize = '20px';
-  var width = 600, height = 300;
+  var width = 700, height = 300;
   // var fontColor = 'white';
 
   var splitSentenceData = sentenceData.split(" ");
@@ -18,8 +18,8 @@ function wordRender(sentenceData) {
   var sentenceDataBegin = splitSentenceData.slice(0, half).join(" ");
   sentenceDataEnd = splitSentenceData.slice(half, length).join(" ");
 
-  var dOrg = "M 5,130 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100 c 60,0 0,100 100,53 c 60,0 0,100 80,70",
-      dTr = "M 5,15 c100,0 0,100 100,100 c 100,0 0,-100 100,-100 c 50,0 0,100 100,53 c 60,0 0,100 80,70 c 95,0 0,130 100,140 c 100,0 0,-100 100,-100 ";
+  var dOrg = "M 8,100 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100 c 60,0 0,100 100,53 c 60,0 0,100 80,70",
+      dTr = "M 8,15 c100,0 0,100 100,100 c 100,0 0,-100 100,-100 c 50,0 0,100 100,53 c 60,0 0,100 80,70 c 95,0 0,130 100,140 c 100,0 0,-100 100,-100 ";
 
 // create SVG
   var svg = d3.select("body").select("#sentence")
@@ -30,7 +30,7 @@ function wordRender(sentenceData) {
 // create SVG path, setup transform translate
   svg.append("path")
     .attr("id", "wave")
-    .attr("transform", "translate(0,0)scale(1,1)")
+    .attr("transform", "translate(0.5,0.5)scale(1,0.95)")
     .attr("d", dOrg)
     .call(transition, dOrg, dTr)
     .style("fill", "none");
