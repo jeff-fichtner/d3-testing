@@ -14,9 +14,9 @@ function callAndInit() {
 }
 
 function run(sentence) {
-	dropzoneRender();
+	// dropzoneRender();
 	renderInteract();
-	wordRender(sentence);
+	// wordRender(sentence);
 }
 
 $(function() {
