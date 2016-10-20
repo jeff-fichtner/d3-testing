@@ -43,44 +43,28 @@ function wordRender(sentenceData) {
   startOffSet = "41%";
   endOffSet = "44%";
 
-  svgBegin = svg.append("text").attr("class", "text-start");
-  svgEnd = svg.append("text").attr("class", "text-end");
+  svg.append("text").attr("class", "text-start");
+  svg.append("text").attr("class", "text-end");
 
-  test = renderStart(svgBegin, sentenceDataBegin, startClass, startAnchor, startOffSet)
-  renderEnd(svgEnd, sentenceDataEnd, endClass, endAnchor, endOffSet)
+  render(svg, sentenceDataBegin, startClass, startAnchor, startOffSet)
+  render(svg, sentenceDataEnd, endClass, endAnchor, endOffSet)
 
-  function renderStart(svg, sentenceData, textClass, textAnchor, offset) {
-    var text = svg.select(textClass) //
+  function render(svg, sentenceData, textClass, textAnchor, offset) {
+    var text = svg.select(textClass)
     var textPath = text.selectAll("textPath")
-    var textPathUpdate = textPath.data([sentenceData]) //
+    var textPathUpdate = textPath.data([sentenceData])
 
     textPathUpdate
       .enter()
         .append("textPath")
         .attr("xlink:href", "#wave")
-        .style("text-anchor", textAnchor) //
-        .attr("startOffset", offset) //
+        .style("text-anchor", textAnchor)
+        .attr("startOffset", offset)
         .text(function(sentenceText) {
           return sentenceText
         })
 
   }
-
-  // function renderEnd(svg, sentenceEnd) {
-  //   var text = svg.select(".text-end")
-  //   var textPath = text.selectAll("textPath")
-  //   var textPathUpdate = textPath.data([sentenceEnd])
-  //
-  //   textPathUpdate
-  //     .enter()
-  //       .append("textPath")
-  //       .attr("xlink:href", "#wave")
-  //       .style("text-anchor", "start")
-  //       .attr("startOffset", "44%")
-  //       .text(function(sentenceText) {
-  //         return sentenceText
-  //       })
-  // }
 
 // ANIMATION functions
 
