@@ -50,11 +50,11 @@ function renderInteract() {
    * applies to this demo as well so it doesn't have to be repeated. */
 
   // enable draggables to be dropped into this
-  interact('.dropzone').dropzone({
+  interact('#inner-dropzone').dropzone({
     // only accept elements matching this CSS selector
     accept: '.yes-drop',
     // Require a 75% element overlap for a drop to be possible
-    overlap: .20,
+    overlap: .01,
 
     // listen for drop related events:
 
