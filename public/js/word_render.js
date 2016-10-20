@@ -3,7 +3,7 @@ function wordRender(sentenceData) {
 
   var fontSize = '20px';
   var width = 600, height = 300;
-  var fontColor = 'white';
+  // var fontColor = 'white';
 
   var splitSentenceData = sentenceData.split(" ");
   var length = splitSentenceData.length;
@@ -36,12 +36,12 @@ function wordRender(sentenceData) {
     .style("fill", "none");
     // .style("stroke", "#1A818C");
 
-  startClass = ".text-start";
-  endClass = ".text-end";
-  startAnchor = "end";
-  endAnchor = "start";
-  startOffSet = "41%";
-  endOffSet = "44%";
+  var startClass = ".text-start";
+  var endClass = ".text-end";
+  var startAnchor = "end";
+  var endAnchor = "start";
+  var startOffSet = "41%";
+  var endOffSet = "44%";
 
   svg.append("text").attr("class", "text-start");
   svg.append("text").attr("class", "text-end");
