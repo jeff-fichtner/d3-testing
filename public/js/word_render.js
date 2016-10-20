@@ -5,33 +5,31 @@ function wordRender(sentenceData) {
 
   var splitSentenceData = sentenceData.split(" ");
   var length = splitSentenceData.length;
-  // return random number between 1 and last index(length-1)?
   var half = length / 2;
 
-  // array.splice(start, [deleteCount = 1]) => return word fragment DESTRUCTIVE
-  var wordSplice = splitSentenceData.splice(half, 1);
+  var wordSplice = splitSentenceData.splice(half, 1)[0];
+
+  if (wordSplice[wordSplice.length - 1] === ",") {
+    wordSplice = wordSplice.substring(0, wordSplice.length - 1);
+    console.log('it had a comma');
+    console.log(wordSplice);
+  }
 
   var sentenceDataBegin = splitSentenceData.slice(0, half).join(" ");
   var sentenceDataEnd = splitSentenceData.slice(half, length).join(" ");
 
+  var dOrg = "M 5,130 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100 c 40,0 0,100 100,53 c 60,0 0,100 80,70",
+      dTr = "M 5,15 c100,0 0,100 100,100 c 100,0 0,-100 100,-100 c 50,0 0,100 100,53 c 60,0 0,100 80,70 c 95,0 0,130 100,140 c 100,0 0,-100 100,-100 ";
+
 // create SVG
-
-  var dOrg = "M 0,120 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100 c 50,0 0,100 100,53 c 60,0 0,100 80,70",
-      dTr = "M0,0 c100,0 0,100 100,100 c 100,0 0,-100 100,-100 c 50,0 0,100 100,53 c 60,0 0,100 80,70  c 115,0 0,130 100,140 c 100,0 0,-100 100,-100 ";
-      // dTransform = "M0,0 c100,0 0,100 100,100c100,0 0,-100 100,-100c100,0 0,100 100,100";
-
-  // var dOriginal = 'M 0,5 c 100,0 0,100 100,100 c 100,0 0,-100 100,-100'
-  //     dTransform = 'M 0,5 c 100,0 0,100 100,100 c 100,0 0,-100 100,-100 c 100,0 0,100 100,100'
-
   var svg = d3.select("body").select("#sentence")
     .append("svg")
     .attr("width", width)
     .attr("height", height);
 
-// create SVG path
+// create SVG path, setup transform translate
   svg.append("path")
     .attr("id", "wave")
-    // transform/translate function does what
     .attr("transform", "translate(0,0)scale(1,1)")
     .attr("d", dOrg)
     .call(transition, dOrg, dTr)
@@ -53,16 +51,6 @@ function wordRender(sentenceData) {
       .attr('class', function() { return 'float-left draggable drag-drop'; } )
       .attr('data-y', function() { return '-50' } );
 
-// data for selected word, "wordSplice"
-  var wordText = d3.select("#word-text")
-    .append("wordText")
-    .style('font-size', fontSize);
-
-  wordText.append('text')
-    .append("wordText")
-    .text(wordSplice);
-};
-
   function renderStart(svg, sentenceBegin) {
 
     var textStart = svg.select(".text-start")
@@ -74,7 +62,7 @@ function wordRender(sentenceData) {
         .append("textPath")
         .attr("xlink:href", "#wave")
         .style("text-anchor", "middle")
-        .attr("startOffset", "18%")
+        .attr("startOffset", "21%")
         .text(function(sentenceText) {
           return sentenceText
         })
@@ -90,14 +78,13 @@ function wordRender(sentenceData) {
         .append("textPath")
         .attr("xlink:href", "#wave")
         .style("text-anchor", "middle")
-        .attr("startOffset", "75%")
+        .attr("startOffset", "85%")
         .text(function(sentenceText) {
           return sentenceText
         })
   }
 
 // ANIMATION functions
-  // what is 't'?
 
   function transition(path, d0, d1) {
     path.transition()
@@ -131,12 +118,19 @@ function wordRender(sentenceData) {
 
 // *** WORDS generator ***
 
+// data for selected word, "wordSplice"
+  var wordText = d3.select("#word-text")
+    .append("wordText")
+    .style('font-size', fontSize);
+
+  wordText.append('text')
+    .append("wordText")
+    .text([wordSplice]);
+};
+
 // data for words
 
- wordData = ["odd", "zoo", "alive", "curl", "felt",  "gain",  "dawn",  "dear",
-"gold", "path", "safe", "roof", "aunt",  "self",  "tuna",  "few", "zero", "world", "wait", "uncle", "visit", "cheer", "jaw", "paper", "sharp", "sink", "twice", "middle", "paste", "animal", "chicken", "banana","earth", "fever", "follow", "crow", "giant", "degree",  "useful",  "zebra", "cottage", "couch", "evening", "crumb",
-"decide", "camera",  "garden",  "false", "gasoline", "fruit", "beautiful", "copying", "cancel",  "newscast",  "fleece",  "select", "slumber", "usual", "remind", "pour","graceful", "pioneer", "alert", "chimney", "continue",  "urge",  "striving",  "stretch","noise", "terrible", "voyage", "surprise","twenty", "amount", "avenue", "beggar", "forecast", "vacation", "libraries", "sneezing", "machine", "neighbor", "weekend", "laughter","shoulder", "quarter", "equal", "wheelchair",
-"actively", "discover", "vulture", "mountain", "scariest", "impossible", "government", "consistent", "recommend", "whistling", "doubtful",  "guitar"];
+ wordData = ["odd", "zoo", "alive", "curl", "felt",  "gain", "dawn", "dear", "gold", "path", "safe", "roof", "aunt",  "self",  "tuna",  "few", "zero", "world", "wait", "uncle", "visit", "cheer", "jaw", "paper", "sharp", "sink", "twice", "middle", "paste", "animal", "chicken", "banana","earth", "fever", "follow", "crow", "giant", "degree",  "useful",  "zebra", "cottage", "couch", "evening", "crumb", "decide", "camera",  "garden",  "false", "gasoline", "fruit", "beautiful", "copying", "cancel",  "newscast", "fleece", "select", "slumber", "usual", "remind", "pour","graceful", "pioneer", "alert", "chimney", "continue",  "urge",  "striving",  "stretch","noise", "terrible", "voyage", "surprise","twenty", "amount", "avenue", "beggar", "forecast", "vacation", "libraries", "sneezing", "machine", "neighbor", "weekend", "laughter","shoulder", "quarter", "equal", "wheelchair", "actively", "discover", "vulture", "mountain", "scariest", "impossible", "government", "consistent", "recommend", "whistling", "doubtful", "guitar"];
 
  function getRandomSubarray(arr, size) {
     var shuffled = arr.slice(0), i = arr.length, temp, index;
