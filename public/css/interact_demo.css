@@ -5,7 +5,7 @@
 
 #inner-dropzone {
   width: 0%;
-  margin-top: 15%;
+  margin-top: 35%;
 }
 
 .block {
@@ -26,11 +26,11 @@
 /*  display: inline-block;
   position: relative;*/
   background-color: #ccc;
-  border: dashed 4px transparent;
+  /*border: dashed 4px transparent;*/
   border-radius: 4px;
   margin: 10px auto 30px;
   padding: 10px;
-  width: 80%;
+  width: 100%;
   color: white;
   /*height: 15px;*/
   transition: background-color 0.3s;
@@ -45,6 +45,12 @@
   background-color: #29e;
   /*border-color: #fff;*/
   /*border-style: solid;*/
+}
+
+#wordtext{
+ display: inline-block;
+ position: absolute;
+/* margin-top: 1000%;*/
 }
 
 .drag-drop {
@@ -73,4 +79,6 @@
 
 div {
   font-family: sans-serif;
+  letter-spacing: 1.5px;
+
 }
