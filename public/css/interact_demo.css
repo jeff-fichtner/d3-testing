@@ -1,11 +1,15 @@
 /** {
   border: solid;
   border-color: green;
+}*/
+
+body {
+  width: 650px;
 }
-*/
+
 #outer-dropzone {
   height: 300px;
-  width: 650px;
+  /*width: 650px;*/
  /* background-color: #ccc;*/
   position: relative;
 }
@@ -14,9 +18,9 @@
   /*display: inline-block;*/
   position: absolute;
   width: 0%;
- /* background-color: grey;*/
-  margin-top: 10%;
-  margin-left: 35%;
+  background-color: grey;
+  margin-top: 12%;
+  margin-left: 37%;
 
 
 }
