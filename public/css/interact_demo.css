@@ -17,9 +17,10 @@ body {
 #inner-dropzone {
   /*display: inline-block;*/
   position: absolute;
-  width: 0%;
- /* background-color: grey;*/
-  margin-top: 12%;
+  width: 10%;
+  height: 20%;
+  /*background-color: grey;*/
+  margin-top: 8%;
   margin-left: 37%;
 
 
