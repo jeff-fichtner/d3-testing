@@ -1,7 +1,9 @@
+
 function wordRender(sentenceData) {
 
   var fontSize = '20px';
   var width = 600, height = 300;
+  var fontColor = 'white';
 
   var splitSentenceData = sentenceData.split(" ");
   var length = splitSentenceData.length;
@@ -11,14 +13,12 @@ function wordRender(sentenceData) {
 
   if (wordSplice[wordSplice.length - 1] === ",") {
     wordSplice = wordSplice.substring(0, wordSplice.length - 1);
-    console.log('it had a comma');
-    console.log(wordSplice);
   }
 
   var sentenceDataBegin = splitSentenceData.slice(0, half).join(" ");
   var sentenceDataEnd = splitSentenceData.slice(half, length).join(" ");
 
-  var dOrg = "M 5,130 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100 c 40,0 0,100 100,53 c 60,0 0,100 80,70",
+  var dOrg = "M 5,130 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100 c 60,0 0,100 100,53 c 60,0 0,100 80,70",
       dTr = "M 5,15 c100,0 0,100 100,100 c 100,0 0,-100 100,-100 c 50,0 0,100 100,53 c 60,0 0,100 80,70 c 95,0 0,130 100,140 c 100,0 0,-100 100,-100 ";
 
 // create SVG
@@ -33,52 +33,44 @@ function wordRender(sentenceData) {
     .attr("transform", "translate(0,0)scale(1,1)")
     .attr("d", dOrg)
     .call(transition, dOrg, dTr)
-    .style("fill", "none")
-    .style("stroke", "#1A818C");
+    .style("fill", "none");
+    // .style("stroke", "#1A818C");
 
-  // add class to text
+
   svg.append("text").attr("class", "text-start")
   svg.append("text").attr("class", "text-end")
 
   renderStart(svg, sentenceDataBegin)
   renderEnd(svg, sentenceDataEnd)
 
-  var wordText = d3.select("body").selectAll("div")
-    .data(randoWords)
-    .enter().append("div")
-      .text(function(d) { return d; } )
-      .style('font-size', fontSize)
-      .attr('class', function() { return 'float-left draggable drag-drop'; } )
-      .attr('data-y', function() { return '-50' } );
-
   function renderStart(svg, sentenceBegin) {
+    var text = svg.select(".text-start")
+    var textPath = text.selectAll("textPath")
+    var textPathUpdate = textPath.data([sentenceBegin])
 
-    var textStart = svg.select(".text-start")
-    var textStartPath = textStart.selectAll("textPath")
-    var textStartPathUpdate = textStartPath.data([sentenceBegin])
-
-    var test = textStartPathUpdate
+    textPathUpdate
       .enter()
         .append("textPath")
         .attr("xlink:href", "#wave")
-        .style("text-anchor", "middle")
-        .attr("startOffset", "21%")
+        .style("text-anchor", "end")
+        .attr("startOffset", "41%")
         .text(function(sentenceText) {
           return sentenceText
         })
+
   }
 
   function renderEnd(svg, sentenceEnd) {
-    var textStart = svg.select(".text-end")
-    var textStartPath = textStart.selectAll("textPath")
-    var textStartPathUpdate = textStartPath.data([sentenceEnd])
+    var text = svg.select(".text-end")
+    var textPath = text.selectAll("textPath")
+    var textPathUpdate = textPath.data([sentenceEnd])
 
-    textStartPathUpdate
+    textPathUpdate
       .enter()
         .append("textPath")
         .attr("xlink:href", "#wave")
-        .style("text-anchor", "middle")
-        .attr("startOffset", "85%")
+        .style("text-anchor", "start")
+        .attr("startOffset", "44%")
         .text(function(sentenceText) {
           return sentenceText
         })
@@ -90,7 +82,9 @@ function wordRender(sentenceData) {
     path.transition()
         .duration(2000)
         .attrTween("d", pathTween(d1, 4))
-        .each("end", function() { d3.select(this).call(transition, d1, d0); });
+        .each("end", function() {
+          d3.select(this).call(transition, d1, d0);
+        });
   }
 
   function pathTween(d1, precision) {
@@ -111,12 +105,22 @@ function wordRender(sentenceData) {
       });
 
       return function(t) {
-        return t < 1 ? "M" + points.map(function(p) { return p(t); }).join("L") : d1;
+        return t < 1 ? "M" + points.map(function(p) {
+          return p(t); }).join("L") : d1;
       };
     };
   }
 
 // *** WORDS generator ***
+
+var wordText = d3.select("body").selectAll("div")
+  .data(randoWords)
+  .enter().append("div")
+    .text(function(d) { return d; } )
+    .style('font-size', fontSize)
+    .attr('class', function() {
+      return 'float-left draggable drag-drop';
+    });
 
 // data for selected word, "wordSplice"
   var wordText = d3.select("#word-text")
