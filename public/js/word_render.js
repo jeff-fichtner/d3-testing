@@ -16,7 +16,7 @@ function wordRender(sentenceData) {
   }
 
   var sentenceDataBegin = splitSentenceData.slice(0, half).join(" ");
-  var sentenceDataEnd = splitSentenceData.slice(half, length).join(" ");
+  sentenceDataEnd = splitSentenceData.slice(half, length).join(" ");
 
   var dOrg = "M 5,130 c 100,0 0,60 100,55 c 100,0 0,-80 100,-100 c 115,0 0,130 100,140 c 100,0 0,-100 100,-100 c 60,0 0,100 100,53 c 60,0 0,100 80,70",
       dTr = "M 5,15 c100,0 0,100 100,100 c 100,0 0,-100 100,-100 c 50,0 0,100 100,53 c 60,0 0,100 80,70 c 95,0 0,130 100,140 c 100,0 0,-100 100,-100 ";
@@ -36,45 +36,51 @@ function wordRender(sentenceData) {
     .style("fill", "none");
     // .style("stroke", "#1A818C");
 
+  startClass = ".text-start";
+  endClass = ".text-end";
+  startAnchor = "end";
+  endAnchor = "start";
+  startOffSet = "41%";
+  endOffSet = "44%";
 
-  svg.append("text").attr("class", "text-start")
-  svg.append("text").attr("class", "text-end")
+  svgBegin = svg.append("text").attr("class", "text-start");
+  svgEnd = svg.append("text").attr("class", "text-end");
 
-  renderStart(svg, sentenceDataBegin)
-  renderEnd(svg, sentenceDataEnd)
+  test = renderStart(svgBegin, sentenceDataBegin, startClass, startAnchor, startOffSet)
+  renderEnd(svgEnd, sentenceDataEnd, endClass, endAnchor, endOffSet)
 
-  function renderStart(svg, sentenceBegin) {
-    var text = svg.select(".text-start")
+  function renderStart(svg, sentenceData, textClass, textAnchor, offset) {
+    var text = svg.select(textClass) //
     var textPath = text.selectAll("textPath")
-    var textPathUpdate = textPath.data([sentenceBegin])
+    var textPathUpdate = textPath.data([sentenceData]) //
 
     textPathUpdate
       .enter()
         .append("textPath")
         .attr("xlink:href", "#wave")
-        .style("text-anchor", "end")
-        .attr("startOffset", "41%")
+        .style("text-anchor", textAnchor) //
+        .attr("startOffset", offset) //
         .text(function(sentenceText) {
           return sentenceText
         })
 
   }
 
-  function renderEnd(svg, sentenceEnd) {
-    var text = svg.select(".text-end")
-    var textPath = text.selectAll("textPath")
-    var textPathUpdate = textPath.data([sentenceEnd])
-
-    textPathUpdate
-      .enter()
-        .append("textPath")
-        .attr("xlink:href", "#wave")
-        .style("text-anchor", "start")
-        .attr("startOffset", "44%")
-        .text(function(sentenceText) {
-          return sentenceText
-        })
-  }
+  // function renderEnd(svg, sentenceEnd) {
+  //   var text = svg.select(".text-end")
+  //   var textPath = text.selectAll("textPath")
+  //   var textPathUpdate = textPath.data([sentenceEnd])
+  //
+  //   textPathUpdate
+  //     .enter()
+  //       .append("textPath")
+  //       .attr("xlink:href", "#wave")
+  //       .style("text-anchor", "start")
+  //       .attr("startOffset", "44%")
+  //       .text(function(sentenceText) {
+  //         return sentenceText
+  //       })
+  // }
 
 // ANIMATION functions
 
